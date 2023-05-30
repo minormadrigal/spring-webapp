@@ -1,18 +1,22 @@
 pipeline {
 
-    agent {
-        label 'node-master'
-        reuseNode true
-    }
+    agent none
 
     stages {
         stage('Compilation') {
+        agent {
+                label 'node-master'
+            }
+
             steps {
                sh 'mvn -DskipTests clean install package'
             }
         }
 
         stage('Unit test') {
+        agent {
+                label 'node-master'
+            }
             steps {
                 sh 'mvn test'
             }
@@ -24,13 +28,18 @@ pipeline {
         }
 
         stage('Docker - Build Tag y Push') {
+        agent {
+                label 'node-master'
+            }
             steps {
                 sh 'mvn compile jib:build'
             }
         }
 
         stage('Initializing QA') {
-
+            agent {
+                    label 'node-qa'
+                }
             steps {
                 script {
                     def props
