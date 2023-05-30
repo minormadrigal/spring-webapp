@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        label 'worker-linux'
+        label 'node-dev'
     }
 
     stages {
@@ -37,7 +37,7 @@ pipeline {
 
                     echo "My tag is ${props['version']}"
 
-                    build job: 'multibranch-project-qa', parameters: [string(name: 'TAG_VERSION', value: "${props['version']}")]
+                    build job: 'spring-webapp-qa', parameters: [string(name: 'TAG_VERSION', value: "${props['version']}")]
                 }
             }
         }
