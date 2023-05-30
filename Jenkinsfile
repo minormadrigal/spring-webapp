@@ -1,11 +1,9 @@
 pipeline {
 
-    agent {
-        label 'node-master'
-    }
+    agent none
 
     stages {
-        stage('Compilacion') {
+        stage('Compilation') {
             steps {
                sh 'mvn -DskipTests clean install package'
             }
@@ -22,13 +20,13 @@ pipeline {
             }
         }
 
-        stage('Procesos docker - Build Tag y Push') {
+        stage('Docker - Build Tag y Push') {
             steps {
                 sh 'mvn compile jib:build'
             }
         }
 
-        stage('Propagando QA') {
+        stage('Initializing QA') {
 
             steps {
                 script {
