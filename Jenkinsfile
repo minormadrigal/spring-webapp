@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        label 'node-dev'
+        label 'node-master'
     }
 
     stages {
