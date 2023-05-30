@@ -1,6 +1,9 @@
 pipeline {
 
-    agent none
+    agent {
+        label 'node-master'
+        reuseNode true
+    }
 
     stages {
         stage('Compilation') {
