@@ -33,7 +33,7 @@ pipeline {
             }
             steps {
             withCredentials([string(credentialsId: 'docker-id', variable: 'docker-pwd')]) {
-                sh 'docker login -u mmadrigal -p ${docker-pwd}'
+                sh 'echo "${docker-pwd}" | docker login --username foo --password-stdin'
                 sh 'mvn compile jib:build'
             }
 
