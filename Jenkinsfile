@@ -32,7 +32,7 @@ pipeline {
                 label 'node-master'
             }
             steps {
-                sh 'docker login --username mmadrigal --password-stdin < ~/docker-pwd'
+                sh 'docker login --username mmadrigal --password-stdin < ~/docker-pwd.txt'
                 sh 'mvn compile jib:build'
             }
         }
