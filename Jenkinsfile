@@ -32,8 +32,8 @@ pipeline {
                 label 'node-master'
             }
             steps {
-            withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-credentials')]) {
-                sh 'docker login -u mmadrigal ${docker-credentials}'
+            withCredentials([string(credentialsId: 'docker-id', variable: 'docker-pwd')]) {
+                sh 'docker login -u mmadrigal -p ${docker-pwd}'
                 sh 'mvn compile jib:build'
             }
 
