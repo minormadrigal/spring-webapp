@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('Initializing QA') {
+        stage('Propagating') {
             agent {
                     label 'node-qa'
                 }
